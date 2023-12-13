@@ -1,4 +1,6 @@
-using System.Net;
+using System.Reflection;
+using Microsoft.OpenApi.Models;
+using WebApiITCrona.DI;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,8 +9,23 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "Web API",
+        Version = "v1"
+    });
+    var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+});
+
 builder.Services.AddHttpClient();
+
+builder.Services.AddCallStorageContext(builder.Configuration);
+
+builder.Services.AddServices();
 
 var app = builder.Build();
 
@@ -21,7 +38,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
+//app.UseAuthorization();
 
 app.MapControllers();
 

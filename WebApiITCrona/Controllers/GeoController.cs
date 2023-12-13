@@ -1,34 +1,50 @@
 using Microsoft.AspNetCore.Mvc;
+using WebApiITCrona.Services;
 
 namespace WebApiITCrona.Controllers
 {
+    /// <summary>
+    /// Контроллер геолокации
+    /// </summary>
     [ApiController]
-    [Route("api/v1/[action]")]
+    [Route("api/v1/")]
     public class GeoController : ControllerBase
-    {        
+    {
+        private readonly IService _geoService;
         private readonly ILogger<GeoController> _logger;
-        private readonly IHttpClientFactory httpClient;
 
-        public GeoController(ILogger<GeoController> logger, IHttpClientFactory httpClient)
+        /// <summary>
+        /// ctor.
+        /// </summary>
+        public GeoController(ILogger<GeoController> logger, IService geoService)
         {
             _logger = logger;
-            this.httpClient = httpClient;
+            _geoService = geoService;
         }
 
-        [HttpGet(Name = "GetTest1")]
+        /// <summary>
+        /// Получить ответ 
+        /// </summary>
+        [HttpGet(Name = "Get")]
         public async Task<ActionResult<string>> Get()
         {
             return await Task.FromResult("Test");
         }
 
-        [HttpGet(Name = "GetTest2")]
+        /// <summary>
+        /// Получить ответ 1
+        /// </summary>
+        [HttpGet("from-body",Name = "GetFromBody")]
         public async Task<ActionResult<string>> GetFromBody([FromBody] string url)
         {
             return await Task.FromResult("Test");
         }
-
-        [HttpGet(Name = "GetTest3")]
-        public async Task<ActionResult<string>> GetFromquery([FromQuery] string url)
+        
+        /// <summary>
+        /// Получить ответ
+        /// </summary>
+        [HttpGet("from-query",Name = "GetFromQuery")]
+        public async Task<ActionResult<string>> GetFromQuery([FromQuery] string url)
         {
             return await Task.FromResult("Test");
         }
