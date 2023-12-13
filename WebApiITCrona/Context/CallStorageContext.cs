@@ -1,10 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using WebApiITCrona.Context.Abstract;
 using WebApiITCrona.Context.Abstract.Context;
 using WebApiITCrona.Context.Entity;
 
 namespace WebApiITCrona.Context;
 
+/// <summary>
+/// Контекст базы данных
+/// </summary>
 public class CallStorageContext :
     DbContext,
     ICallStorageContext,
@@ -12,6 +14,9 @@ public class CallStorageContext :
     IDbWriter,
     IUnitOfWork
 {
+    /// <summary>
+    /// ctor.
+    /// </summary>
     public CallStorageContext(DbContextOptions<CallStorageContext> options) : base(options){}
 
     /// <inheritdoc />
@@ -21,6 +26,7 @@ public class CallStorageContext :
         modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
     }
     
+    /// <inheritdoc />
     public DbSet<CallEntity> Calls => Set<CallEntity>();
     
     IQueryable<TEntity> IDbReader.Read<TEntity>() => base.Set<TEntity>().AsNoTracking().AsQueryable();
@@ -31,6 +37,7 @@ public class CallStorageContext :
 
     void IDbWriter.Delete<TEntity>(TEntity data) => base.Entry(data).State = EntityState.Deleted;
 
+    /// <inheritdoc cref="IUnitOfWork"/>
     public override async Task<int> SaveChangesAsync(CancellationToken ct)
     {
         var count = await base.SaveChangesAsync(ct);
