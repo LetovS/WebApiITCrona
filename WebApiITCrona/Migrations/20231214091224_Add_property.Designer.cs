@@ -15,6 +15,7 @@ namespace WebApiITCrona.Migrations
     [Migration("20231214091224_Add_property")]
     partial class Add_property
     {
+        /// <inheritdoc/>
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618

@@ -1,12 +1,9 @@
 ﻿using Microsoft.Extensions.Options;
-using System.Net.Http;
-using System.Net.Http.Json;
 using WebApiITCrona.Infrastructure.Context.Abstract.Context;
 using WebApiITCrona.Infrastructure.Context.Entity;
 using WebApiITCrona.Infrastructure.Models;
 using WebApiITCrona.Infrastructure.Options;
 using WebApiITCrona.Repositories.Abstract;
-using WebApiITCrona.Repositories.Implementations.Call;
 
 namespace WebApiITCrona.Services;
 
@@ -52,6 +49,6 @@ public class GeoService : IService
 
         var response = await _httpClient.GetFromJsonAsync<IpInfoResponse>(requestUri);
 
-        return response;
+        return response!;
     }
 }

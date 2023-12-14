@@ -5,16 +5,48 @@
 /// </summary>
 public class IpInfoResponse
 {
-    public string Ip { get; set; }
-    public string City { get; set; }
-    public string Region { get; set; }
-    public string Country { get; set; }
-    public string Loc { get; set; }
-    public string Org { get; set; }
-    public string Postal { get; set; }
-    public string Timezone { get; set; }
+    /// <summary>
+    /// IP адрес
+    /// </summary>
+    public string? Ip { get; set; }
+
+    /// <summary>
+    /// Город
+    /// </summary>
+    public string? City { get; set; }
+
+    /// <summary>
+    /// Регион
+    /// </summary>
+    public string? Region { get; set; }
+
+    /// <summary>
+    /// Страна
+    /// </summary>
+    public string? Country { get; set; }
+
+    /// <summary>
+    /// Координаты
+    /// </summary>
+    public string? Loc { get; set; }
+
+    /// <summary>
+    /// Организация
+    /// </summary>
+    public string? Org { get; set; }
+
+    /// <summary>
+    /// Почтовый индекс
+    /// </summary>
+    public string? Postal { get; set; }
+
+    /// <summary>
+    /// Часовой пояс
+    /// </summary>
+    public string? Timezone { get; set; }
+
     /// <summary>
     /// URL на readme
     /// </summary>
-    public string Readme { get; set; }
+    public string? Readme { get; set; }
 }

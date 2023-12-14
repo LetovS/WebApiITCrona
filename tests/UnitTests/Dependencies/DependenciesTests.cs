@@ -1,13 +1,14 @@
-﻿using System.ComponentModel.Design;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
-using WebApiITCrona;
 using WebApiITCrona.Controllers;
 using Xunit;
 
 namespace UnitTests.Dependencies;
 
+/// <summary>
+/// Тест DI
+/// </summary>
 public class DependenciesTests : IClassFixture<ContainerFixture>
 {
     private readonly IServiceProvider _container;
@@ -41,7 +42,7 @@ public class DependenciesTests : IClassFixture<ContainerFixture>
     /// Список контроллеров Api
     /// </summary>
     public static IEnumerable<object[]> Controllers =>
-        typeof(GeoController).Assembly
+        typeof(LocationController).Assembly
             .DefinedTypes
             .Where(type => typeof(ControllerBase).IsAssignableFrom(type))
             .Where(type => !type.IsAbstract)

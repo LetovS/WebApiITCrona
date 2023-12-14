@@ -13,8 +13,9 @@ namespace WebApiITCrona.Migrations
 {
     [DbContext(typeof(CallStorageContext))]
     [Migration("20231214092640_add_unique_constraint")]
-    partial class add_unique_constraint
+    partial class Add_unique_constraint
     {
+        /// <inheritdoc/>
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618

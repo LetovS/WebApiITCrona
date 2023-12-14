@@ -15,6 +15,7 @@ namespace WebApiITCrona.Migrations
     [Migration("20231213182031_Init")]
     partial class Init
     {
+        /// <inheritdoc/>
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618

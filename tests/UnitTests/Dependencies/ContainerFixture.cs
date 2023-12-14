@@ -4,14 +4,17 @@ using Xunit;
 
 namespace UnitTests.Dependencies;
 
-public class ContainerFixture : IDisposable
+/// <summary>
+/// 
+/// </summary>
+public abstract class ContainerFixture : IDisposable
 {
     private readonly IHost _host;
     
     /// <summary>
     /// ctor.
     /// </summary>
-    public ContainerFixture()
+    protected ContainerFixture()
     {
         _host = Program.CreateHostBuilder(Array.Empty<string>(), b =>
             {
@@ -20,6 +23,9 @@ public class ContainerFixture : IDisposable
             .Build();
     }
     
+    /// <summary>
+    /// Контейнер сервисов
+    /// </summary>
     public IServiceProvider Container => _host.Services;
 
     /// <inheritdoc />

@@ -3,28 +3,32 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace WebApiITCrona.Migrations
-{
-    public partial class Init : Migration
-    {
-        protected override void Up(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.CreateTable(
-                name: "Calls",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Calls", x => x.Id);
-                });
-        }
+namespace WebApiITCrona.Migrations;
 
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.DropTable(
-                name: "Calls");
-        }
+/// <summary>
+/// Инициализирующая миграция
+/// </summary>
+public partial class Init : Migration
+{
+    /// <inheritdoc/>
+    protected override void Up(MigrationBuilder migrationBuilder)
+    {
+        migrationBuilder.CreateTable(
+            name: "Calls",
+            columns: table => new
+            {
+                Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+            },
+            constraints: table =>
+            {
+                table.PrimaryKey("PK_Calls", x => x.Id);
+            });
+    }
+
+    /// <inheritdoc/>
+    protected override void Down(MigrationBuilder migrationBuilder)
+    {
+        migrationBuilder.DropTable(
+            name: "Calls");
     }
 }

@@ -1,16 +1,9 @@
-using System.Reflection;
-using FluentValidation;
-using FluentValidation.AspNetCore;
-using Microsoft.Extensions.Options;
-using Microsoft.OpenApi.Models;
-using WebApiITCrona.DI;
-using WebApiITCrona.Infrastructure.Options;
-using WebApiITCrona.Infrastructure.Validators;
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("UnitTests")]
 namespace WebApiITCrona;
 
-
-public class Program
+internal class Program
 {
     /// <summary>
     /// Entry point
@@ -26,7 +19,7 @@ public class Program
     ///  Создает построитель хоста
     /// </summary>
     public static IHostBuilder CreateHostBuilder(string[] args, Action<IWebHostBuilder> webHostBuilderConfigurator)
-        => Microsoft.Extensions.Hosting.Host
+        => Host
             .CreateDefaultBuilder()
             .ConfigureWebHostDefaults(webHostBuilderConfigurator);
 

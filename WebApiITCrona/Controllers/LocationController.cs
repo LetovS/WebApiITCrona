@@ -9,14 +9,14 @@ namespace WebApiITCrona.Controllers
     /// </summary>
     [ApiController]
     [Route("api/v1/")]
-    public class GeoController : ControllerBase
+    public class LocationController : ControllerBase
     {
         private readonly IService _geoService;
 
         /// <summary>
         /// ctor.
         /// </summary>
-        public GeoController(IService geoService)
+        public LocationController(IService geoService)
         {
             _geoService = geoService;
         }
@@ -27,7 +27,7 @@ namespace WebApiITCrona.Controllers
         [HttpGet(Name = "GetInfoAboutIp")]
         [ProducesResponseType(typeof(IpInfoResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Get([FromQuery] IpRequest ipRequest)
+        public async Task<IActionResult> GetLocation([FromQuery] IpRequest ipRequest)
         {
             var response = await _geoService.GetInfoAboutIp(ipRequest);
             
