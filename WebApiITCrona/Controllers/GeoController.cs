@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using WebApiITCrona.Models;
 using WebApiITCrona.Services;
 
 namespace WebApiITCrona.Controllers
@@ -11,42 +12,30 @@ namespace WebApiITCrona.Controllers
     public class GeoController : ControllerBase
     {
         private readonly IService _geoService;
-        private readonly ILogger<GeoController> _logger;
 
         /// <summary>
         /// ctor.
         /// </summary>
-        public GeoController(ILogger<GeoController> logger, IService geoService)
+        public GeoController(IService geoService)
         {
-            _logger = logger;
             _geoService = geoService;
         }
 
         /// <summary>
-        /// Получить ответ 
+        /// Получить данные об IP
         /// </summary>
-        [HttpGet(Name = "Get")]
-        public async Task<ActionResult<string>> Get()
+        [HttpGet(Name = "GetInfoAboutIp")]
+        [ProducesResponseType(typeof(IpInfoResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Get([FromQuery] IpRequest ipRequest)
         {
-            return await Task.FromResult("Test");
-        }
-
-        /// <summary>
-        /// Получить ответ 1
-        /// </summary>
-        [HttpGet("from-body",Name = "GetFromBody")]
-        public async Task<ActionResult<string>> GetFromBody([FromBody] string url)
-        {
-            return await Task.FromResult("Test");
-        }
-        
-        /// <summary>
-        /// Получить ответ
-        /// </summary>
-        [HttpGet("from-query",Name = "GetFromQuery")]
-        public async Task<ActionResult<string>> GetFromQuery([FromQuery] string url)
-        {
-            return await Task.FromResult("Test");
+            var response = await _geoService.GetInfoAboutIp(ipRequest);
+            
+            if (response == null)
+            {
+                return NotFound();
+            }
+            return Ok(response);
         }
     }
 }
