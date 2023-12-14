@@ -13,4 +13,4 @@
 #### Unit tests
 Тестируется:
 - валидация входящего строкового представления IP Address [link](https://github.com/LetovS/WebApiITCrona/blob/master/tests/UnitTests/Validators/IpRequestValidatorTest.cs)
-- DI контейнер [link](https://github.com/LetovS/WebApiITCrona/blob/master/tests/UnitTests/Dependencies/DependenciesTests.cs) (разрабатывается)
+- DI контейнер [link](https://github.com/LetovS/WebApiITCrona/blob/master/tests/UnitTests/Dependencies/DependenciesTests.cs)
