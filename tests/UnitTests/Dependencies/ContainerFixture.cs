@@ -7,14 +7,14 @@ namespace UnitTests.Dependencies;
 /// <summary>
 /// 
 /// </summary>
-public abstract class ContainerFixture : IDisposable
+public class ContainerFixture : IDisposable
 {
     private readonly IHost _host;
     
     /// <summary>
     /// ctor.
     /// </summary>
-    protected ContainerFixture()
+    public ContainerFixture()
     {
         _host = Program.CreateHostBuilder(Array.Empty<string>(), b =>
             {
