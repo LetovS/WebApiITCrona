@@ -9,6 +9,22 @@
 
 Если ```В БД сервиса``` такого IP нет, то ```IP``` добавляется в БД. После возвращается ```response``` в [формате](https://github.com/LetovS/WebApiITCrona/blob/master/WebApiITCrona/Infrastructure/Models/IpInfoResponse.cs) 
 
+#### Swagger
+Настроен Swagger, с документированием методов.
+
+```shell
+services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "Web API",
+        Version = "v1"
+    });
+    var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+});
+```
+
 #### CI
 Настроен простенький [CI](https://github.com/LetovS/WebApiITCrona/actions)
 
