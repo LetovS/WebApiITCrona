@@ -5,6 +5,9 @@ using Xunit;
 
 namespace UnitTests.Validators;
 
+/// <summary>
+/// Тест валидации IP адреса
+/// </summary>
 public class IpRequestValidatorTest : ValidatorTestBase
 {
     private readonly IpRequestValidator _validator = new IpRequestValidator();
