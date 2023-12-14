@@ -1,8 +1,8 @@
 ﻿using System.Net;
 using FluentValidation;
-using WebApiITCrona.Models;
+using WebApiITCrona.Infrastructure.Models;
 
-namespace WebApiITCrona.Validators;
+namespace WebApiITCrona.Infrastructure.Validators;
 
 /// <summary>
 /// Валидация P адреса
@@ -12,7 +12,7 @@ public class IpRequestValidator : AbstractValidator<IpRequest>
     /// <summary>
     /// ctor.
     /// </summary>
-    
+
     public IpRequestValidator()
     {
         RuleFor(ip => ip.Ip)

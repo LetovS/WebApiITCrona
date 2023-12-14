@@ -1,4 +1,4 @@
-﻿namespace WebApiITCrona.Models;
+﻿namespace WebApiITCrona.Infrastructure.Models;
 
 /// <summary>
 /// Модель запроса IP

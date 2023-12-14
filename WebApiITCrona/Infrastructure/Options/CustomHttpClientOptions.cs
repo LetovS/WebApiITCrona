@@ -1,4 +1,4 @@
-﻿namespace WebApiITCrona.Options;
+﻿namespace WebApiITCrona.Infrastructure.Options;
 
 /// <summary>
 /// Настройки для httpclient
@@ -9,7 +9,7 @@ public sealed class CustomHttpClientOptions
     /// Название http client
     /// </summary>
     public string HttpClientName { get; set; }
-    
+
     /// <summary>
     /// Базовый адрес
     /// </summary>
