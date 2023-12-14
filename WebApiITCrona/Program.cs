@@ -1,6 +1,10 @@
 using System.Reflection;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.OpenApi.Models;
 using WebApiITCrona.DI;
+using WebApiITCrona.Options;
+using WebApiITCrona.Validators;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +13,13 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+
+builder.Services
+    .AddFluentValidationAutoValidation(cfg =>
+    {
+        cfg.DisableDataAnnotationsValidation = false;
+    });
+builder.Services.AddValidatorsFromAssemblyContaining<IpRequestValidator>();
 
 builder.Services.AddSwaggerGen(options =>
 {
@@ -21,11 +32,19 @@ builder.Services.AddSwaggerGen(options =>
     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 });
 
-builder.Services.AddHttpClient();
+var baseUrl = new CustomHttpClientOptions();
+builder.Configuration.GetSection(nameof(CustomHttpClientOptions)).Bind(baseUrl);
+
+builder.Services.AddHttpClient(baseUrl.HttpClientName, opt =>
+{
+    opt.BaseAddress = baseUrl.UriBase;
+});
 
 builder.Services.AddCallStorageContext(builder.Configuration);
 
 builder.Services.AddServices();
+
+builder.Services.AddRepositories();
 
 var app = builder.Build();
 
