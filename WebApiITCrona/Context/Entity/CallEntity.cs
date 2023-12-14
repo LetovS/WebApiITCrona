@@ -10,7 +10,13 @@ public sealed class CallEntity : EntityBase
     /// <summary>
     /// ctor.
     /// </summary>
-    public CallEntity(Guid id) : base(id)
+    public CallEntity(Guid id, string ipAddress) : base(id)
     {
+        IpAddress = ipAddress;
     }
+    
+    /// <summary>
+    /// IP адресс
+    /// </summary>
+    public string IpAddress { get; set; }
 }

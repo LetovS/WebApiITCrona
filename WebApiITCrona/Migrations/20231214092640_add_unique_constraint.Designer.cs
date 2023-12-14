@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApiITCrona.Context;
 
@@ -11,9 +12,10 @@ using WebApiITCrona.Context;
 namespace WebApiITCrona.Migrations
 {
     [DbContext(typeof(CallStorageContext))]
-    partial class CallStorageContextModelSnapshot : ModelSnapshot
+    [Migration("20231214092640_add_unique_constraint")]
+    partial class add_unique_constraint
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

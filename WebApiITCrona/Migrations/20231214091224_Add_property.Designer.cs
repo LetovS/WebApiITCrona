@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApiITCrona.Context;
 
@@ -11,9 +12,10 @@ using WebApiITCrona.Context;
 namespace WebApiITCrona.Migrations
 {
     [DbContext(typeof(CallStorageContext))]
-    partial class CallStorageContextModelSnapshot : ModelSnapshot
+    [Migration("20231214091224_Add_property")]
+    partial class Add_property
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,19 +27,16 @@ namespace WebApiITCrona.Migrations
             modelBuilder.Entity("WebApiITCrona.Context.Entity.CallEntity", b =>
                 {
                     b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("IpAddress")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IpAddress")
-                        .IsUnique()
-                        .HasDatabaseName("UQ_Calls_IpAddress");
-
-                    b.ToTable("Calls", (string)null);
+                    b.ToTable("Calls");
                 });
 #pragma warning restore 612, 618
         }
