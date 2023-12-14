@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using WebApiITCrona.Models;
+using WebApiITCrona.Infrastructure.Models;
 using WebApiITCrona.Services;
 
 namespace WebApiITCrona.Controllers

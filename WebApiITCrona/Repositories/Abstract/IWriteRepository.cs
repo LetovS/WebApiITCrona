@@ -1,4 +1,4 @@
-﻿using WebApiITCrona.Context.Abstract.Entity;
+﻿using WebApiITCrona.Infrastructure.Context.Abstract.Entity;
 
 namespace WebApiITCrona.Repositories.Abstract;
 

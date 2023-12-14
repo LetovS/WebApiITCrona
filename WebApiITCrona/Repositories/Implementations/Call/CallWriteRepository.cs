@@ -1,5 +1,5 @@
-﻿using WebApiITCrona.Context.Abstract.Context;
-using WebApiITCrona.Context.Entity;
+﻿using WebApiITCrona.Infrastructure.Context.Abstract.Context;
+using WebApiITCrona.Infrastructure.Context.Entity;
 using WebApiITCrona.Repositories.Abstract;
 
 namespace WebApiITCrona.Repositories.Implementations.Call;
@@ -11,6 +11,9 @@ public sealed class CallWriteRepository : IWriteRepository<CallEntity>
 {
     private readonly IDbWriter writer;
 
+    /// <summary>
+    /// ctor.
+    /// </summary>
     public CallWriteRepository(IDbWriter writer)
     {
         this.writer = writer;

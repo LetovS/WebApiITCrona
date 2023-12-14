@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using WebApiITCrona.Context.Abstract.Context;
-using WebApiITCrona.Context.Abstract.Entity;
-using WebApiITCrona.Context.Entity;
+using WebApiITCrona.Infrastructure.Context.Abstract.Context;
+using WebApiITCrona.Infrastructure.Context.Entity;
 using WebApiITCrona.Repositories.Abstract;
 
 namespace WebApiITCrona.Repositories.Implementations.Call;
