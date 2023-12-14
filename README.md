@@ -9,6 +9,8 @@
 
 Если ```В БД сервиса``` такого IP нет, то ```IP``` добавляется в БД. После возвращается ```response``` в [формате](https://github.com/LetovS/WebApiITCrona/blob/master/WebApiITCrona/Infrastructure/Models/IpInfoResponse.cs) 
 
+#### CI
+Настроен простенький [CI](https://github.com/LetovS/WebApiITCrona/actions)
 
 #### Unit tests
 Тестируется:
