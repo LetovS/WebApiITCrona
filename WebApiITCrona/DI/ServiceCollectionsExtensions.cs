@@ -68,6 +68,5 @@ public static class ServiceCollectionsExtensions
     {
         var options = httpClientOptions.Value;
         services.AddHttpClient(options.HttpClientName, baseUrl => baseUrl.BaseAddress = options.UriBase);
-        1
     }
 }
