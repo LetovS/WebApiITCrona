@@ -7,7 +7,7 @@ namespace WebApiITCrona.Infrastructure.Validators;
 /// <summary>
 /// Валидация P адреса
 /// </summary>
-public class IpRequestValidator : AbstractValidator<IpRequest>
+public sealed class IpRequestValidator : AbstractValidator<IpRequest>
 {
     /// <summary>
     /// ctor.
