@@ -25,10 +25,38 @@ services.AddSwaggerGen(options =>
 });
 ```
 
-#### CI
-Настроен простенький [CI](https://github.com/LetovS/WebApiITCrona/actions)
-
+#### Migrations
+##### Инструменты EF CLI
+###### Установка
+```shell
+dotnet tool install --global dotnet-ef
+```
+###### Обновление
+```shell
+dotnet tool install --global dotnet-ef
+```
+##### Создание миграции
+```shell
+dotnet ef migrations add [migration name] --project WebApiITCrona --context CallStorageContext
+```
+``````[migration name] - Название миграции с прописной буквы``````
+##### Удаление миграции
+```shell
+dotnet ef migrations remove --project WebApiITCrona --context CallStorageContext
+```
+##### Обновление базы данных
+```shell
+dotnet ef database update [migration name] --project WebApiITCrona --context CallStorageContext
+```
+``````[migration name] - накатывает до указанной миграции, в случае указания [0] - сбрасывает все миграции в БД``````
 #### Unit tests
 Тестируется:
 - валидация входящего строкового представления IP Address [link](https://github.com/LetovS/WebApiITCrona/blob/master/tests/UnitTests/Validators/IpRequestValidatorTest.cs)
 - DI контейнер [link](https://github.com/LetovS/WebApiITCrona/blob/master/tests/UnitTests/Dependencies/DependenciesTests.cs)
+
+#### CI
+Настроен простенький [CI](https://github.com/LetovS/WebApiITCrona/actions)
+
+#### Документация
+###### Руководство EF CLI
+[Справочник по интерфейс командной строки .NET Core](https://learn.microsoft.com/ru-ru/ef/core/cli/dotnet)
