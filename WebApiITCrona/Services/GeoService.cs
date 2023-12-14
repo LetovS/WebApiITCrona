@@ -1,7 +1,10 @@
-﻿using System.Net.Http.Json;
-using WebApiITCrona.Context.Abstract.Context;
-using WebApiITCrona.Context.Entity;
-using WebApiITCrona.Models;
+﻿using Microsoft.Extensions.Options;
+using System.Net.Http;
+using System.Net.Http.Json;
+using WebApiITCrona.Infrastructure.Context.Abstract.Context;
+using WebApiITCrona.Infrastructure.Context.Entity;
+using WebApiITCrona.Infrastructure.Models;
+using WebApiITCrona.Infrastructure.Options;
 using WebApiITCrona.Repositories.Abstract;
 using WebApiITCrona.Repositories.Implementations.Call;
 
@@ -17,8 +20,6 @@ public class GeoService : IService
     private readonly IUnitOfWork unitOfWork;
     private readonly HttpClient _httpClient;
 
-    private const string HttpClientName = "customHttpClient";
-
     /// <summary>
     /// ctor.
     /// </summary>
@@ -26,12 +27,13 @@ public class GeoService : IService
         IHttpClientFactory httpClientFactory,
         IReadRepository<CallEntity> readRepository,
         IWriteRepository<CallEntity> writeRepository,
-        IUnitOfWork unitOfWork)
+        IUnitOfWork unitOfWork,
+        IOptions<CustomHttpClientOptions> httpClientOptions)
     {
         _readRepository = readRepository;
         _writeRepository = writeRepository;
         this.unitOfWork = unitOfWork;
-        _httpClient = httpClientFactory.CreateClient(HttpClientName);
+        _httpClient = httpClientFactory.CreateClient(httpClientOptions.Value.HttpClientName);
     }
 
     /// <inheritdoc/>

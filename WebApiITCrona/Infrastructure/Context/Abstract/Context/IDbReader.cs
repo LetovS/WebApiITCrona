@@ -1,7 +1,4 @@
-﻿using WebApiITCrona.Context.Abstract.Entity;
-using WebApiITCrona.Infrastructure.Context.Abstract;
-
-namespace WebApiITCrona.Infrastructure.Context.Abstract.Context;
+﻿namespace WebApiITCrona.Infrastructure.Context.Abstract.Context;
 
 /// <summary>
 /// Ридер базы данных

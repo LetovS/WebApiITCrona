@@ -1,4 +1,4 @@
-﻿using WebApiITCrona.Models;
+﻿using WebApiITCrona.Infrastructure.Models;
 
 namespace WebApiITCrona.Services;
 

@@ -1,10 +1,12 @@
 using System.Reflection;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using WebApiITCrona.DI;
-using WebApiITCrona.Options;
-using WebApiITCrona.Validators;
+using WebApiITCrona.Infrastructure.Options;
+using WebApiITCrona.Infrastructure.Validators;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,13 +34,10 @@ builder.Services.AddSwaggerGen(options =>
     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 });
 
-var baseUrl = new CustomHttpClientOptions();
-builder.Configuration.GetSection(nameof(CustomHttpClientOptions)).Bind(baseUrl);
+builder.Services.AddCustomOptions(builder.Configuration);
 
-builder.Services.AddHttpClient(baseUrl.HttpClientName, opt =>
-{
-    opt.BaseAddress = baseUrl.UriBase;
-});
+var options = builder.Services.BuildServiceProvider().GetRequiredService<IOptions<CustomHttpClientOptions>>();
+builder.Services.AddCustomHttpClient(options);
 
 builder.Services.AddCallStorageContext(builder.Configuration);
 

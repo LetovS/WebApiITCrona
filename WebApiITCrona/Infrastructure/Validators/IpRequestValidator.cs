@@ -24,7 +24,6 @@ public class IpRequestValidator : AbstractValidator<IpRequest>
 
     private static bool BeValidIpAddress(string ip)
     {
-        IPAddress ipAddress;
         return IPAddress.TryParse(ip, out _);
     }
 }

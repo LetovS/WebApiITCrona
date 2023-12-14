@@ -1,7 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using WebApiITCrona.Context;
-using WebApiITCrona.Context.Abstract.Context;
-using WebApiITCrona.Context.Entity;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+using WebApiITCrona.Infrastructure.Context;
+using WebApiITCrona.Infrastructure.Context.Abstract.Context;
+using WebApiITCrona.Infrastructure.Context.Entity;
+using WebApiITCrona.Infrastructure.Options;
 using WebApiITCrona.Repositories.Abstract;
 using WebApiITCrona.Repositories.Implementations.Call;
 using WebApiITCrona.Services;
@@ -48,5 +51,22 @@ public static class ServiceCollectionsExtensions
     {
         services.AddScoped<IReadRepository<CallEntity>, CallReadRepository>();
         services.AddScoped<IWriteRepository<CallEntity>, CallWriteRepository>();
+    }
+
+    /// <summary>
+    /// Добавляет настройки для зависисомтей
+    /// </summary>
+    public static void AddCustomOptions(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.Configure<CustomHttpClientOptions>(configuration.GetSection(nameof(CustomHttpClientOptions)));
+    }
+
+    /// <summary>
+    /// Добавляет пользовательский HttpClient
+    /// </summary>
+    public static void AddCustomHttpClient(this IServiceCollection services, IOptions<CustomHttpClientOptions> httpClientOptions)
+    {
+        var options = httpClientOptions.Value;
+        services.AddHttpClient(options.HttpClientName, baseUrl => baseUrl.BaseAddress = options.UriBase);
     }
 }
