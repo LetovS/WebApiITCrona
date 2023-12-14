@@ -1,6 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WebApiITCrona.Context;
 using WebApiITCrona.Context.Abstract.Context;
+using WebApiITCrona.Context.Entity;
+using WebApiITCrona.Repositories.Abstract;
+using WebApiITCrona.Repositories.Implementations.Call;
 using WebApiITCrona.Services;
 
 namespace WebApiITCrona.DI;
@@ -35,5 +38,15 @@ public static class ServiceCollectionsExtensions
     public static void AddServices(this IServiceCollection services)
     {
         services.AddScoped<IService, GeoService>();
+    }
+    
+    /// <summary>
+    /// Добавляет репозитории
+    /// </summary>
+    /// <param name="services"></param>
+    public static void AddRepositories(this IServiceCollection services)
+    {
+        services.AddScoped<IReadRepository<CallEntity>, CallReadRepository>();
+        services.AddScoped<IWriteRepository<CallEntity>, CallWriteRepository>();
     }
 }
