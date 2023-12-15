@@ -5,11 +5,24 @@ namespace WebApiITCrona;
 
 internal class Program
 {
+    private const string MigrateDatabaseKey = "--just-migrate-db";
+
     /// <summary>
     /// Entry point
     /// </summary>
     public static async Task Main(string[] args)
     {
+
+        var justMigrateDb = args.Any(item => string.Equals(item, MigrateDatabaseKey, StringComparison.InvariantCultureIgnoreCase));
+
+
+        await DatabaseMigrationManager.MigrateSchema().ConfigureAwait(false);
+
+        if (justMigrateDb)
+        {            
+            return;
+        }
+
         await CreateHostBuilder(args, b => ConfigureWebHostBuilder(b))
             .Build()
             .RunAsync();
