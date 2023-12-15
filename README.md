@@ -9,6 +9,7 @@
 
 Если ```В БД сервиса``` такого IP нет, то ```IP``` добавляется в БД. После возвращается ```response``` в [формате](https://github.com/LetovS/WebApiITCrona/blob/master/WebApiITCrona/Infrastructure/Models/IpInfoResponse.cs) 
 
+
 #### Swagger
 Настроен Swagger, с документированием методов.
 
@@ -24,6 +25,7 @@ services.AddSwaggerGen(options =>
     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 });
 ```
+
 
 #### Migrations
 ##### Инструменты EF CLI
@@ -49,13 +51,31 @@ dotnet ef migrations remove --project WebApiITCrona --context CallStorageContext
 dotnet ef database update [migration name] --project WebApiITCrona --context CallStorageContext
 ```
 ``````[migration name] - накатывает до указанной миграции, в случае указания [0] - сбрасывает все миграции в БД``````
+
+
 #### Unit tests
 Тестируется:
 - валидация входящего строкового представления IP Address [link](https://github.com/LetovS/WebApiITCrona/blob/master/tests/UnitTests/Validators/IpRequestValidatorTest.cs)
 - DI контейнер [link](https://github.com/LetovS/WebApiITCrona/blob/master/tests/UnitTests/Dependencies/DependenciesTests.cs)
 
+
 #### CI
 Настроен простенький [CI](https://github.com/LetovS/WebApiITCrona/actions)
+
+
+#### Docker
+##### Build
+```shell
+docker build -t webapi_swagger --no-cache -f WebApiITCrona/Dockerfile .
+```
+##### Запуск образа
+```shell
+docker run -d -p 8080:80 --name try_swager_ui webapi_swagger
+```
+``````shell
+http://localhost:8080/swagger/index.html
+``````
+
 
 #### Документация
 ###### Руководство EF CLI
