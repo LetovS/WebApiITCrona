@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using System.Text.RegularExpressions;
 using FluentValidation;
 using WebApiITCrona.Infrastructure.Models;
 
@@ -24,6 +25,8 @@ public sealed class IpRequestValidator : AbstractValidator<IpRequest>
 
     private static bool BeValidIpAddress(string ip)
     {
-        return IPAddress.TryParse(ip, out _);
+        var pattern = "^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(?:\\.|$)){4}$";
+        Regex regex = new(pattern, RegexOptions.Compiled);
+        return regex.IsMatch(ip);
     }
 }
