@@ -10,5 +10,5 @@ public interface IService
     /// <summary>
     /// Получить информацию по IP
     /// </summary>
-    Task<IpInfoResponse> GetInfoAboutIp(IpRequest ipRequest);
+    Task<IpInfoResponse?> GetInfoAboutIp(IpRequest ipRequest);
 }

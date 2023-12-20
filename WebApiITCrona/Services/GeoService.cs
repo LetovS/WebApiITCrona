@@ -34,7 +34,7 @@ public class GeoService : IService
     }
 
     /// <inheritdoc/>
-    public async Task<IpInfoResponse> GetInfoAboutIp(IpRequest ipRequest)
+    public async Task<IpInfoResponse?> GetInfoAboutIp(IpRequest ipRequest)
     {
         var entity = await _readRepository.GetEntityByIpAddress(ipRequest.Ip, CancellationToken.None);
         // проверить был ли такой IP
@@ -49,6 +49,6 @@ public class GeoService : IService
 
         var response = await _httpClient.GetFromJsonAsync<IpInfoResponse>(requestUri);
 
-        return response!;
+        return response;
     }
 }
